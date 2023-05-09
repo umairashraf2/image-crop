@@ -4,12 +4,17 @@ const croppedImage = document.getElementById("croppedImage");
 const crop = document.getElementById("crop");
 const width = document.getElementById("width-input");
 const height = document.getElementById("height-input");
-const verticalCheckbox = document.getElementById("vericalCheckbox");
+const verticalCheckbox = document.getElementById("verticalCheckbox");
 const horizontalCheckbox = document.getElementById("horizontalCheckbox");
+const verticalRotate = document.getElementById("verticalRotate");
+const horizontalRotate = document.getElementById("horizontalRotate");
 const main_container = document.getElementById("main_container");
 const preview = document.getElementById("preview");
 const demo1 = document.getElementById("demo1");
+const demo2 = document.getElementById("demo2");
 const dwn = document.getElementById("dwn");
+const grayscaleToggle = document.getElementById("grayscale-toggle");
+
 let cropper;
 let w;
 let h;
@@ -29,7 +34,8 @@ inputImage.addEventListener("change", (e) => {
 			if (cropper) cropper.destroy();
 			cropper = new Cropper(image, {
 				viewMode: 1,
-				// autoCropArea: 1,
+				autoCropArea: 1,
+				// background color
 				// aspectRatio: NaN,
 				crop: function (event) {
 					demo1.innerHTML =
@@ -48,10 +54,11 @@ inputImage.addEventListener("change", (e) => {
 });
 
 function updateAspectRatio() {
-	console.log(this.value, this.id);
 	const cropBoxData = cropper.getCropBoxData();
+
 	if (this.id === "width-input") {
 		cropBoxData.width = parseInt(this.value) * 37.7952755906;
+		console.log(cropBoxData.width / 37.7952755906);
 	} else if (this.id === "height-input") {
 		cropBoxData.height = parseInt(this.value) * 37.7952755906;
 	}
@@ -65,9 +72,9 @@ height.addEventListener("input", updateAspectRatio);
 
 verticalCheckbox.addEventListener("change", () => {
 	if (verticalCheckbox.checked) {
-		cropper.rotate(180);
+		cropper.scaleY(-1);
 	} else {
-		cropper.rotate(-180);
+		cropper.scaleY(1);
 	}
 });
 
@@ -79,9 +86,17 @@ horizontalCheckbox.addEventListener("change", () => {
 	}
 });
 
+verticalRotate.addEventListener("click", () => {
+	cropper.rotate(-90);
+});
+
+horizontalRotate.addEventListener("click", () => {
+	cropper.rotate(90);
+});
+
 document.getElementById("customRange1").addEventListener("input", function () {
 	// Get the zoom value from the input range
-	const zoomValue = parseFloat(this.value) / 50;
+	const zoomValue = parseFloat(this.value) / 25;
 	console.log(zoomValue);
 	// Zoom in or out using Cropper.js's zoom method
 	cropper.zoomTo(zoomValue);
@@ -96,6 +111,20 @@ document.getElementById("fit-button").addEventListener("click", function () {
 
 	// Do something with the crop box data
 	console.log(cropBoxData);
+});
+
+grayscaleToggle.addEventListener("change", function () {
+	console.log(this.checked);
+	i = document.querySelectorAll(".cropper-container img")[1];
+	console.log(i);
+
+	if (this.checked) {
+		i.classList.add("grayscale");
+		croppedImage.classList.add("grayscale");
+	} else {
+		i.classList.remove("grayscale");
+		croppedImage.classList.remove("grayscale");
+	}
 });
 
 crop.addEventListener("click", () => {

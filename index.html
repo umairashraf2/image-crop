@@ -23,7 +23,9 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"
 		/>
+		<link rel="stylesheet" href="./static/css/style.css" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
 		<title>Hello, world!</title>
 	</head>
 	<body>
@@ -32,7 +34,7 @@
 			style="display: none"
 			class="container my-3 p-3"
 		>
-			<div class="row">
+			<div class="row d-flex align-items-center">
 				<div class="col-md-2 mb-3">
 					<div>
 						<div class="mb-3">
@@ -76,6 +78,7 @@
 								pattern="[0-9]"
 							/>
 						</div>
+
 						<button
 							class="btn btn-secondary d-flex align-items-center"
 							id="fit-button"
@@ -85,9 +88,10 @@
 							>
 							<span class="ms-2">Fit</span>
 						</button>
+
 						<hr />
 						<div>
-							<h4>Zoom</h4>
+							<h4 class="my-2">Zoom</h4>
 							<span class="material-symbols-outlined">
 								zoom_in
 							</span>
@@ -101,13 +105,39 @@
 							/>
 						</div>
 						<div>
-							<h4>Reflect</h4>
+							<h4 class="my-2">Rotate</h4>
+							<div
+								class="d-flex justify-content-between align-items-center"
+							>
+								<button
+									class="btn btn-secondary d-flex align-items-center"
+									id="horizontalRotate"
+								>
+									<span class="material-symbols-outlined"
+										>rotate_right</span
+									>
+									<span class="ms-2">Right</span>
+								</button>
+								<button
+									class="btn btn-secondary d-flex align-items-center"
+									id="verticalRotate"
+								>
+									<span class="material-symbols-outlined"
+										>rotate_left</span
+									>
+									<span class="ms-2">Left</span>
+								</button>
+							</div>
+						</div>
+
+						<div>
+							<h4 class="my-2">Reflect</h4>
 							<div class="form-check">
 								<input
 									class="form-check-input"
 									type="checkbox"
 									value=""
-									id="vericalCheckbox"
+									id="verticalCheckbox"
 								/>
 								<label
 									class="form-check-label d-flex align-items-center"
@@ -136,12 +166,33 @@
 									<span class="ms-2">Horizontal</span>
 								</label>
 							</div>
+
+							<div>
+								<h4 class="my-2">Filter</h4>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="checkbox"
+										value=""
+										id="grayscale-toggle"
+									/>
+									<label
+										class="form-check-label d-flex align-items-center"
+										for="horizontalCheckbox"
+									>
+										<span class="material-symbols-outlined"
+											>contrast</span
+										>
+										<span class="ms-2">Grayscale</span>
+									</label>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-10">
 					<div
-						style="border: 3px solid"
+						style="border: 5px solid"
 						class="border-secondary d-flex justify-content-center align-items-center rounded"
 					>
 						<img
@@ -149,7 +200,7 @@
 							src=""
 							alt="Cropped Image"
 							id="image"
-							height="470px"
+							height="600px"
 							width="auto"
 						/>
 					</div>
