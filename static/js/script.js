@@ -13,7 +13,10 @@ const preview = document.getElementById("preview");
 const demo1 = document.getElementById("demo1");
 const demo2 = document.getElementById("demo2");
 const dwn = document.getElementById("dwn");
+const dwn2 = document.getElementById("dwn2");
 const grayscaleToggle = document.getElementById("grayscale-toggle");
+const previewImg = document.getElementById("preview-img");
+const y = document.getElementById("showContainer");
 
 let cropper;
 let w;
@@ -35,6 +38,13 @@ inputImage.addEventListener("change", (e) => {
 			cropper = new Cropper(image, {
 				viewMode: 1,
 				autoCropArea: 1,
+				// aspectRatio: 1,
+				// viewMode: 1,
+				// autoCropArea: 1,
+				// cropBoxMovable: false,
+				// cropBoxResizable: false,
+				// zoomOnTouch: false,
+				// zoomOnWheel: false,
 				// background color
 				// aspectRatio: NaN,
 				crop: function (event) {
@@ -96,10 +106,11 @@ horizontalRotate.addEventListener("click", () => {
 
 document.getElementById("customRange1").addEventListener("input", function () {
 	// Get the zoom value from the input range
-	const zoomValue = parseFloat(this.value) / 25;
+	const zoomValue = parseFloat(this.value);
 	console.log(zoomValue);
 	// Zoom in or out using Cropper.js's zoom method
 	cropper.zoomTo(zoomValue);
+	// Move canvas to the top-left corner
 });
 
 document.getElementById("fit-button").addEventListener("click", function () {
@@ -121,16 +132,39 @@ grayscaleToggle.addEventListener("change", function () {
 	if (this.checked) {
 		i.classList.add("grayscale");
 		croppedImage.classList.add("grayscale");
+		previewImg.classList.add("grayscale");
 	} else {
 		i.classList.remove("grayscale");
 		croppedImage.classList.remove("grayscale");
+		previewImg.classList.remove("grayscale");
 	}
 });
 
-crop.addEventListener("click", () => {
-	console.log("clicked crop");
-	let canvas = cropper.getCroppedCanvas();
-	croppedImage.src = canvas.toDataURL("image/png");
-	dwn.href = canvas.toDataURL("image/png");
-	preview.style.display = "block";
+document.getElementById("showPreview").addEventListener("change", function () {
+	if (y.style.display === "none") {
+		y.style.display = "block";
+		image.addEventListener("crop", function () {
+			const croppedCanvas = cropper.getCroppedCanvas();
+			const croppedImageURL = croppedCanvas.toDataURL("image/png");
+			dwn2.href = croppedCanvas.toDataURL("image/png");
+
+			// Update the live preview
+			previewImg.src = croppedImageURL;
+		});
+	} else {
+		y.style.display = "none";
+	}
+});
+//hide y again click
+
+crop.addEventListener("change", () => {
+	if (preview.style.display === "none") {
+		console.log("clicked crop");
+		let canvas = cropper.getCroppedCanvas();
+		croppedImage.src = canvas.toDataURL("image/png");
+		dwn.href = canvas.toDataURL("image/png");
+		preview.style.display = "block";
+	} else {
+		preview.style.display = "none";
+	}
 });
