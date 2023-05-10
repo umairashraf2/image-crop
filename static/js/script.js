@@ -139,10 +139,15 @@ grayscaleToggle.addEventListener("change", function () {
 		previewImg.classList.remove("grayscale");
 	}
 });
-
-document.getElementById("showPreview").addEventListener("change", function () {
+function showPreview() {
 	if (y.style.display === "none") {
 		y.style.display = "block";
+		const croppedCanvas = cropper.getCroppedCanvas();
+		const croppedImageURL = croppedCanvas.toDataURL("image/png");
+		dwn2.href = croppedCanvas.toDataURL("image/png");
+
+		// Update the live preview
+		previewImg.src = croppedImageURL;
 		image.addEventListener("crop", function () {
 			const croppedCanvas = cropper.getCroppedCanvas();
 			const croppedImageURL = croppedCanvas.toDataURL("image/png");
@@ -151,6 +156,13 @@ document.getElementById("showPreview").addEventListener("change", function () {
 			// Update the live preview
 			previewImg.src = croppedImageURL;
 		});
+	} else {
+		y.style.display = "none";
+	}
+}
+document.getElementById("showPreview").addEventListener("change", function () {
+	if (this.checked) {
+		showPreview();
 	} else {
 		y.style.display = "none";
 	}
