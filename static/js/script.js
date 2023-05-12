@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+	const inputImage = document.getElementById("inputImage");
 	const image = document.getElementById("image");
 	const croppedImage = document.getElementById("croppedImage");
 	const crop = document.getElementById("crop");
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	images.forEach(function (img) {
 		img.addEventListener("click", function () {
 			image.src = img.getElementsByTagName("img")[0].srcset;
-			console.log(img.getElementsByTagName("img")[0],image.srcset);
+			console.log(img.getElementsByTagName("img")[0], image.srcset);
 			cropperModalObject.show();
 
 			if (cropper) {
@@ -59,6 +60,46 @@ document.addEventListener("DOMContentLoaded", function () {
 	cropperModal.addEventListener("hidden.bs.modal", function (event) {
 		if (cropper) {
 			cropper.destroy();
+		}
+	});
+
+	inputImage.addEventListener("change", (e) => {
+		console.log("123");
+		const file = e.target.files[0];
+		if (file.size > 5 * 1024 * 1024) {
+			// 5 MB in bytes
+			alert("Please upload an image smaller than 5 MB.");
+			return;
+		}
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				image.src = e.target.result;
+				if (cropper) cropper.destroy();
+				cropper = new Cropper(image, {
+					viewMode: 1,
+					autoCropArea: 1,
+					// aspectRatio: 1,
+					// viewMode: 1,
+					// autoCropArea: 1,
+					// cropBoxMovable: false,
+					// cropBoxResizable: false,
+					// zoomOnTouch: false,
+					// zoomOnWheel: false,
+					// background color
+					// aspectRatio: NaN,
+					crop: function (event) {
+						demo1.innerHTML =
+							"<strong>Width:</strong> " +
+							Math.round(event.detail.width) +
+							"px" +
+							" <strong>Height:</strong> " +
+							Math.round(event.detail.height) +
+							"px";
+					},
+				});
+			};
+			reader.readAsDataURL(file);
 		}
 	});
 
