@@ -15,18 +15,17 @@
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
-
+#height-input {
+	width: 100%;
+}
+#width-input {
+	width: 100%;
+}
 @media only screen and (max-width: 600px) {
 	#mian-logo-css {
 		max-width: 80%;
 	}
 	#close-modal {
 		margin-top: 36px;
-	}
-	#height-input {
-		width: 23.125rem;
-	}
-	#width-input {
-		width: 23.125rem;
 	}
 }
