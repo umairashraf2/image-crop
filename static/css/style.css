@@ -25,6 +25,9 @@
 #width-input {
 	width: 100%;
 }
+#close-modal {
+		margin: 5px;
+	}
 @media only screen and (max-width: 600px) {
 	#mian-logo-css {
 		max-width: 80%;
