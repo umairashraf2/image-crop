@@ -44,12 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				crop: function (event) {
 					demo1.innerHTML =
 						"Width: " +
-						Math.round(event.detail.width) +
-						"px," +
+						Math.round(event.detail.width / 37) +
+						"cm," +
 						" Height: " +
-						Math.round(event.detail.height) +
-						"px, " +
-						"image quality: 100%";
+						Math.round(event.detail.height / 37) +
+						"cm";
 				},
 			});
 		});
