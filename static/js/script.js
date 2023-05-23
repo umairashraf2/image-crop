@@ -52,7 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		// background color
 		// aspectRatio: NaN,
 		crop: function (event) {
-			let numLines = Math.round(event.detail.width / 37);
+			let image_width = Math.round(event.detail.width / 37);
+			let image_height = Math.round(event.detail.height / 37);
+			let numLines = image_width;
 
 			// Get a reference to the overlay
 			let overlay = document.querySelector(".cropper-crop-box");
@@ -90,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				overlay.appendChild(line);
 			}
 			demo1.innerHTML = `${
-				numLines * numLines
-			} m², ${numLines} x ${numLines} cm, ${numLines} lines`;
+				image_width * image_height
+			} m², ${image_width} x ${image_height} cm, ${image_width} lines`;
 		},
 	});
 	cropper.options.guides = {
@@ -124,13 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					// background color
 					// aspectRatio: NaN,
 					crop: function (event) {
-						let numLines = 10;
-
-						// Get the width of the crop box in pixels
-						let cropBoxWidth = event.detail.width;
-
-						// Calculate the distance between each line
-						let lineDistance = cropBoxWidth / numLines;
+						let numLines = Math.round(event.detail.width / 37);
 
 						// Get a reference to the overlay
 						let overlay =
@@ -151,33 +147,30 @@ document.addEventListener("DOMContentLoaded", function () {
 							});
 
 						console.log(overlay);
+						let percent = 100 / numLines;
 
 						// Create the lines
 						for (let i = 0; i < numLines - 1; i++) {
 							// -1 because we don't need a line at the very right edge
 							// Calculate the left position of the line
-							let linePosition = lineDistance * (i + 1); // +1 because we don't need a line at the very left edge
+							let linePosition = percent * (i + 1); // +1 because we don't need a line at the very left edge
 
 							// Create a new div element for the line
 							let line = document.createElement("div");
 							line.classList.add("vertical-line");
 							line.style.position = "absolute";
-							line.style.left = linePosition + "px";
+							line.style.left = linePosition + "%";
 							line.style.top = "0";
 							line.style.bottom = "0";
-							line.style.width = "1px";
-							line.style.backgroundColor = "red"; // Use whatever color you like
+							line.style.width = "2px";
+							line.style.backgroundColor = "white"; // Use whatever color you like
 
 							// Add the line to the overlay
 							overlay.appendChild(line);
 						}
-						demo1.innerHTML =
-							"Width: " +
-							Math.round(event.detail.width / 37) +
-							"cm" +
-							" Height: " +
-							Math.round(event.detail.height / 37) +
-							"cm";
+						demo1.innerHTML = `${
+							numLines * numLines
+						} m², ${numLines} x ${numLines} cm, ${numLines} lines`;
 					},
 				});
 			};
