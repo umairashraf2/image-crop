@@ -117,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
 					viewMode: 1,
 					autoCropArea: 1,
 					// aspectRatio: 1,
-					// viewMode: 1,
 					// autoCropArea: 1,
 					// cropBoxMovable: false,
 					// cropBoxResizable: false,
