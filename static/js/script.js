@@ -40,8 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	cropper = new Cropper(image, {
 		viewMode: 2,
 		autoCropArea: 1,
-		guides: true,
-		// aspectRatio: 1,
+		// transparent background
+		// background: transparent,
+		// aspectRatio: 1,,
 		// viewMode: 1,
 		// autoCropArea: 1,
 		// cropBoxMovable: false,
@@ -88,11 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				// Add the line to the overlay
 				overlay.appendChild(line);
 			}
-			demo1.innerHTML = Math.round(event.detail.width / 37) "m²" +
-				Math.round(event.detail.width / 37) +
-				" x " +
-				Math.round(event.detail.height / 37) +
-				" cm";
+			demo1.innerHTML = `${
+				numLines * numLines
+			} m², ${numLines} x ${numLines} cm, ${numLines} lines`;
 		},
 	});
 	cropper.options.guides = {
