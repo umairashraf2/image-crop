@@ -126,7 +126,9 @@ document.addEventListener("DOMContentLoaded", function () {
 					// background color
 					// aspectRatio: NaN,
 					crop: function (event) {
-						let numLines = Math.round(event.detail.width / 37);
+						let image_width = Math.round(event.detail.width / 37);
+						let image_height = Math.round(event.detail.height / 37);
+						let numLines = image_width;
 
 						// Get a reference to the overlay
 						let overlay =
@@ -169,8 +171,8 @@ document.addEventListener("DOMContentLoaded", function () {
 							overlay.appendChild(line);
 						}
 						demo1.innerHTML = `${
-							numLines * numLines
-						} m², ${numLines} x ${numLines} cm, ${numLines} lines`;
+							image_width * image_height
+						} m², ${image_width} x ${image_height} cm, ${image_width} lines`;
 					},
 				});
 			};
