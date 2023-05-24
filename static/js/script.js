@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					crop: function (event) {
 						let image_width = Math.round(event.detail.width / 37);
 						let image_height = Math.round(event.detail.height / 37);
-						let numLines = image_width;
+						let numLines = image_width / 2;
 
 						// Get a reference to the overlay
 						let overlay =
