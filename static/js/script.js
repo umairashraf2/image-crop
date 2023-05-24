@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			// image_width and iamge_height in cm
 			let image_width = Math.round(event.detail.width / 37);
 			let image_height = Math.round(event.detail.height / 37);
-			let numLines = image_width;
+			let numLines = image_width / 2;
 
 			// Get a reference to the overlay
 			let overlay = document.querySelector(".cropper-crop-box");
@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				overlay.appendChild(line);
 			}
 			demo1.innerHTML = `${
-				image_width * image_height
-			} m², ${image_width} x ${image_height} cm, ${image_width} lines`;
+				image_width * image_height / 10000
+			} m², ${image_width} x ${image_height} cm, ${image_width / 2} lines`;
 		},
 	});
 
@@ -168,8 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
 							overlay.appendChild(line);
 						}
 						demo1.innerHTML = `${
-							image_width * image_height
-						} m², ${image_width} x ${image_height} cm, ${image_width} lines`;
+							image_width * image_height / 10000
+						} m², ${image_width} x ${image_height} cm, ${image_width / 2} lines`;
 					},
 				});
 			};
