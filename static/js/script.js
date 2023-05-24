@@ -42,51 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				autoCropArea: 1,
 
 				crop: function (event) {
-					// image_width and iamge_height in cm
-					let image_width = Math.round(event.detail.width / 2);
-					let image_height = Math.round(event.detail.height / 2);
-					let numLines = image_width / 50;
-
-					// Get a reference to the overlay
-					let overlay = document.querySelector(".cropper-crop-box");
-
-					// Clear any existing lines
-					// overlay.innerHTML = "";
-					overlay.querySelectorAll(".vertical-line").forEach((e) => {
-						e.remove();
-					});
-					// remove dashed lines
-					overlay.querySelectorAll(".cropper-dashed").forEach((e) => {
-						e.remove();
-					});
-
-					console.log(overlay);
-					let percent = 100 / numLines;
-
-					// Create the lines
-					for (let i = 0; i < numLines - 1; i++) {
-						// -1 because we don't need a line at the very right edge
-						// Calculate the left position of the line
-						let linePosition = percent * (i + 1); // +1 because we don't need a line at the very left edge
-
-						// Create a new div element for the line
-						let line = document.createElement("div");
-						line.classList.add("vertical-line");
-						line.style.position = "absolute";
-						line.style.left = linePosition + "%";
-						line.style.top = "0";
-						line.style.bottom = "0";
-						line.style.width = "1px";
-						line.style.backgroundColor = "white"; // Use whatever color you like
-
-						// Add the line to the overlay
-						overlay.appendChild(line);
-					}
-					demo1.innerHTML = `${
-						(image_width * image_height) / 10000
-					} m², ${image_width} x ${image_height} cm, ${Math.round(
-						image_width / 50 - 1
-					)} lines`;
+					demo1.innerHTML =
+						"Width: " +
+						Math.round(event.detail.width / 37) +
+						"cm," +
+						" Height: " +
+						Math.round(event.detail.height / 37) +
+						"cm";
 				},
 			});
 		});
@@ -126,56 +88,13 @@ document.addEventListener("DOMContentLoaded", function () {
 					// background color
 					// aspectRatio: NaN,
 					crop: function (event) {
-						// image_width and iamge_height in cm
-						let image_width = Math.round(event.detail.width / 2);
-						let image_height = Math.round(event.detail.height / 2);
-						let numLines = image_width / 50;
-
-						// Get a reference to the overlay
-						let overlay =
-							document.querySelector(".cropper-crop-box");
-
-						// Clear any existing lines
-						// overlay.innerHTML = "";
-						overlay
-							.querySelectorAll(".vertical-line")
-							.forEach((e) => {
-								e.remove();
-							});
-						// remove dashed lines
-						overlay
-							.querySelectorAll(".cropper-dashed")
-							.forEach((e) => {
-								e.remove();
-							});
-
-						console.log(overlay);
-						let percent = 100 / numLines;
-
-						// Create the lines
-						for (let i = 0; i < numLines - 1; i++) {
-							// -1 because we don't need a line at the very right edge
-							// Calculate the left position of the line
-							let linePosition = percent * (i + 1); // +1 because we don't need a line at the very left edge
-
-							// Create a new div element for the line
-							let line = document.createElement("div");
-							line.classList.add("vertical-line");
-							line.style.position = "absolute";
-							line.style.left = linePosition + "%";
-							line.style.top = "0";
-							line.style.bottom = "0";
-							line.style.width = "1px";
-							line.style.backgroundColor = "white"; // Use whatever color you like
-
-							// Add the line to the overlay
-							overlay.appendChild(line);
-						}
-						demo1.innerHTML = `${
-							(image_width * image_height) / 10000
-						} m², ${image_width} x ${image_height} cm, ${Math.round(
-							image_width / 50 - 1
-						)} lines`;
+						demo1.innerHTML =
+							"<strong>Width:</strong> " +
+							Math.round(event.detail.width) +
+							"px" +
+							" <strong>Height:</strong> " +
+							Math.round(event.detail.height) +
+							"px";
 					},
 				});
 			};
