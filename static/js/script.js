@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	// );
 	let cropper;
 
-	// const urlParams = new URLSearchParams(window.location.search);
-	// const imgSrc = "./static/images/" + urlParams.get("img");
+	const urlParams = new URLSearchParams(window.location.search);
+	const imgSrc = "./static/images/" + urlParams.get("img");
 
 	// // Set image source
-	// image.src = imgSrc;
+	image.src = imgSrc;
 
 	// Initialize Cropper.js on the image
 	// var croppers = new Cropper(document.getElementById("image"));
@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		// background color
 		// aspectRatio: NaN,
 		crop: function (event) {
+			// image_width and iamge_height in cm
 			let image_width = Math.round(event.detail.width / 37);
 			let image_height = Math.round(event.detail.height / 37);
 			let numLines = image_width;
@@ -85,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				line.style.left = linePosition + "%";
 				line.style.top = "0";
 				line.style.bottom = "0";
-				line.style.width = "2px";
+				line.style.width = "1px";
 				line.style.backgroundColor = "white"; // Use whatever color you like
 
 				// Add the line to the overlay
@@ -96,9 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			} m², ${image_width} x ${image_height} cm, ${image_width} lines`;
 		},
 	});
-	cropper.options.guides = {
-		lines: 10,
-	};
 
 	inputImage.addEventListener("change", (e) => {
 		console.log("123");
