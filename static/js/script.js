@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		// aspectRatio: NaN,
 		crop: function (event) {
 			// image_width and iamge_height in cm
-			let image_width = Math.round(event.detail.width / 37);
-			let image_height = Math.round(event.detail.height / 37);
-			let numLines = image_width / 2;
+			let image_width = Math.round(event.detail.width / 2);
+			let image_height = Math.round(event.detail.height / 2);
+			let numLines = image_width / 50;
 
 			// Get a reference to the overlay
 			let overlay = document.querySelector(".cropper-crop-box");
@@ -93,8 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				overlay.appendChild(line);
 			}
 			demo1.innerHTML = `${
-				image_width * image_height / 10000
-			} m², ${image_width} x ${image_height} cm, ${image_width / 2} lines`;
+				(image_width * image_height) / 10000
+			} m², ${image_width} x ${image_height} cm, ${Math.round(
+				image_width / 50 - 1
+			)} lines`;
 		},
 	});
 
@@ -123,9 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
 					// background color
 					// aspectRatio: NaN,
 					crop: function (event) {
-						let image_width = Math.round(event.detail.width / 37);
-						let image_height = Math.round(event.detail.height / 37);
-						let numLines = image_width / 2;
+						let image_width = Math.round(event.detail.width / 2);
+						let image_height = Math.round(event.detail.height / 2);
+						let numLines = image_width / 50;
 
 						// Get a reference to the overlay
 						let overlay =
@@ -168,8 +170,10 @@ document.addEventListener("DOMContentLoaded", function () {
 							overlay.appendChild(line);
 						}
 						demo1.innerHTML = `${
-							image_width * image_height / 10000
-						} m², ${image_width} x ${image_height} cm, ${image_width / 2} lines`;
+							(image_width * image_height) / 10000
+						} m², ${image_width} x ${image_height} cm, ${Math.round(
+							image_width / 50 - 1
+						)} lines`;
 					},
 				});
 			};
@@ -181,10 +185,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		const cropBoxData = cropper.getCropBoxData();
 
 		if (this.id === "width-input") {
-			cropBoxData.width = parseInt(this.value) * 37.7952755906;
-			console.log(cropBoxData.width / 37.7952755906);
+			cropBoxData.width = parseInt(this.value) * 1.53;
+			console.log(cropBoxData.width / 1.53);
 		} else if (this.id === "height-input") {
-			cropBoxData.height = parseInt(this.value) * 37.7952755906;
+			cropBoxData.height = parseInt(this.value) * 1.53;
 		}
 		console.log(cropBoxData);
 
