@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const horizontalRotate = document.getElementById("horizontalRotate");
 	const preview = document.getElementById("preview");
 	const demo1 = document.getElementById("demo1");
+	const demo2 = document.getElementById("demo2");
 	const dwn = document.getElementById("dwn");
 	const dwn2 = document.getElementById("dwn2");
 	const grayscaleToggle = document.getElementById("grayscale-toggle");
@@ -27,11 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	// );
 	let cropper;
 
-	const urlParams = new URLSearchParams(window.location.search);
-	const imgSrc = "./static/images/" + urlParams.get("img");
+	// const urlParams = new URLSearchParams(window.location.search);
+	// const imgSrc = "./static/images/" + urlParams.get("img");
 
 	// // Set image source
-	image.src = imgSrc;
+	// image.src = imgSrc;
 
 	// Initialize Cropper.js on the image
 	// var croppers = new Cropper(document.getElementById("image"));
@@ -74,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			let percent = 100 / numLines;
 
 			// Create the lines
+			let clonedDemo2;
 			for (let i = 0; i < numLines - 1; i++) {
 				// -1 because we don't need a line at the very right edge
 				// Calculate the left position of the line
@@ -81,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				// Create a new div element for the line
 				let line = document.createElement("div");
+				let p = document.createElement("p");
+				// 50 cm after p tag
+				p.innerHTML = `50 cm`;
 				line.classList.add("vertical-line");
 				line.style.position = "absolute";
 				line.style.left = linePosition + "%";
@@ -88,10 +93,14 @@ document.addEventListener("DOMContentLoaded", function () {
 				line.style.bottom = "0";
 				line.style.width = "1px";
 				line.style.backgroundColor = "white"; // Use whatever color you like
+                
+                let clonedDemo2 = demo2.cloneNode(true); // Clone the demo2 element
 
-				// Add the line to the overlay
-				overlay.appendChild(line);
+				clonedDemo2.appendChild(line);
+				clonedDemo2.appendChild(p); // Append p tag after each line
+				overlay.appendChild(clonedDemo2);
 			}
+
 			demo1.innerHTML = `${
 				(image_width * image_height) / 10000
 			} m², ${image_width} x ${image_height} cm, ${Math.round(
