@@ -42,8 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		viewMode: 2,
 		autoCropArea: 1,
 		// transparent background
-		// background: transparent,
-		// aspectRatio: 1,,
+		// ratio 1:1
+		// responsive: true,
+		// background white
+		// background: false,
+		// background: true,
+		// aspectRatio: 1,
 		// viewMode: 1,
 		// autoCropArea: 1,
 		// cropBoxMovable: false,
@@ -93,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				line.style.bottom = "0";
 				line.style.width = "1px";
 				line.style.backgroundColor = "white"; // Use whatever color you like
-                
-                let clonedDemo2 = demo2.cloneNode(true); // Clone the demo2 element
+
+				let clonedDemo2 = demo2.cloneNode(true); // Clone the demo2 element
 
 				clonedDemo2.appendChild(line);
 				clonedDemo2.appendChild(p); // Append p tag after each line

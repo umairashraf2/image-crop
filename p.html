@@ -1,0 +1,346 @@
+<div
+				class="flex flex-col align-middle w-[344px] bg-white"
+				style="display: flex"
+			>
+				<div class="m-3">
+					<div class="mb-3">
+						<p class="mb-2">Adjust to desired size</p>
+						<label
+							for="exampleFormControlInput1"
+							class="form-label d-flex align-items-center"
+						>
+							<span class="material-symbols-outlined">width</span>
+							<span class="ms-2">Width in cm</span>
+						</label>
+						<input
+							type="number"
+							class="form-control"
+							id="width-input"
+							placeholder="Enter width in cm"
+							min="0"
+							step="1"
+							pattern="[0-9]"
+						/>
+					</div>
+					<div class="mb-3">
+						<label
+							for="exampleFormControlInput1"
+							class="form-label d-flex align-items-center"
+						>
+							<span class="material-symbols-outlined"
+								>height</span
+							>
+							<span class="ms-2">Height in cm</span>
+						</label>
+						<input
+							type="number"
+							class="form-control"
+							id="height-input"
+							placeholder="Enter height in cm"
+							min="0"
+							max="500"
+							step="1"
+							pattern="[0-9]"
+						/>
+						<small>(up to 500cm)</small>
+					</div>
+
+					<button
+						class="btn btn-secondary d-flex align-items-center mb-2"
+						id="fit-button"
+					>
+						<span class="material-symbols-outlined"
+							>fit_screen</span
+						>
+						<span class="ms-2">Fit</span>
+					</button>
+
+					<hr />
+					<div>
+						<h4 class="my-2">Zoom</h4>
+						<span class="material-symbols-outlined"> zoom_in </span>
+						<input
+							type="range"
+							class="form-range"
+							id="customRange1"
+							step="0.1"
+							min="0"
+							max="5"
+							value="0"
+						/>
+					</div>
+					<div>
+						<h4 class="my-2">Rotate</h4>
+						<div
+							class="d-flex justify-content-start align-items-center"
+						>
+							<button
+								class="btn btn-secondary d-flex align-items-center"
+								id="horizontalRotate"
+							>
+								<span class="material-symbols-outlined"
+									>rotate_right</span
+								>
+							</button>
+							<button
+								class="btn btn-secondary d-flex align-items-center ms-3"
+								id="verticalRotate"
+							>
+								<span class="material-symbols-outlined"
+									>rotate_left</span
+								>
+							</button>
+						</div>
+					</div>
+
+					<div>
+						<h4 class="my-2">Reflect</h4>
+						<div class="form-check">
+							<input
+								class="form-check-input"
+								type="checkbox"
+								value=""
+								id="verticalCheckbox"
+							/>
+							<label
+								class="form-check-label d-flex align-items-center"
+								for="vericalCheckbox"
+							>
+								<span class="material-symbols-outlined"
+									>swap_vert</span
+								>
+								<span class="ms-2">Vertical</span>
+							</label>
+						</div>
+						<div class="form-check">
+							<input
+								class="form-check-input"
+								type="checkbox"
+								value=""
+								id="horizontalCheckbox"
+							/>
+							<label
+								class="form-check-label d-flex align-items-center"
+								for="horizontalCheckbox"
+							>
+								<span class="material-symbols-outlined"
+									>swap_horiz</span
+								>
+								<span class="ms-2">Horizontal</span>
+							</label>
+						</div>
+					</div>
+					<div>
+						<h4 class="my-2">Filter</h4>
+						<div class="form-check">
+							<input
+								class="form-check-input"
+								type="checkbox"
+								value=""
+								id="grayscale-toggle"
+							/>
+							<label
+								class="form-check-label d-flex align-items-center"
+								for="horizontalCheckbox"
+							>
+								<span class="material-symbols-outlined"
+									>contrast</span
+								>
+								<span class="ms-2">Grayscale</span>
+							</label>
+						</div>
+					</div>
+					<div class="my-3">
+						<h4 class="mb-2">Upload Image</h4>
+						<div class="mb-2">
+							<input
+								class="form-control"
+								type="file"
+								id="inputImage"
+								accept="image/*"
+							/>
+						</div>
+					</div>
+					<div>
+						<h4 class="mb-2">Preview</h4>
+						<div class="form-check">
+							<input
+								class="form-check-input"
+								type="checkbox"
+								value=""
+								id="showPreview"
+							/>
+							<label
+								class="form-check-label d-flex align-items-center"
+								for="showPreview"
+							>
+								<span class="material-symbols-outlined">
+									visibility
+								</span>
+								<span class="ms-2">Live Preview</span>
+							</label>
+						</div>
+						<div
+							class="my-3"
+							id="showContainer"
+							style="display: none"
+						>
+							<img
+								id="preview-img"
+								src=""
+								alt="Cropped Image Preview"
+								class="img-fluid rounded mx-auto d-block"
+								style="max-height: 200px"
+							/>
+							<div class="d-flex justify-content-center mt-3">
+								<a
+									id="dwn2"
+									class="btn btn-secondary"
+									download="cropped-image.png"
+									>Download</a
+								>
+							</div>
+						</div>
+						<div class="form-check">
+							<input
+								class="form-check-input"
+								type="checkbox"
+								value=""
+								id="crop"
+							/>
+							<label
+								class="form-check-label d-flex align-items-center"
+								for="crop"
+							>
+								<span class="material-symbols-outlined">
+									crop
+								</span>
+								<span class="ms-2">Crop</span>
+							</label>
+						</div>
+						<div class="my-3" id="preview" style="display: none">
+							<img
+								id="croppedImage"
+								src=""
+								alt="Cropped Image"
+								class="img-fluid rounded mx-auto d-block"
+								style="max-height: 200px"
+							/>
+							<!-- download button -->
+							<div class="d-flex justify-content-center mt-3">
+								<a
+									id="dwn"
+									class="btn btn-secondary"
+									download="cropped-image.png"
+									>Download</a
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+            <!-- <button
+					class="btn btn-secondary d-flex align-items-center"
+					id="fit-button"
+				>
+					<span class="material-symbols-outlined">fit_screen</span>
+					<span class="ms-2">Fit</span>
+				</button>
+
+				<div>
+					<h4 class="my-2">Zoom</h4>
+					<span class="material-symbols-outlined"> zoom_in </span>
+					<input
+						type="range"
+						class="form-range"
+						id="customRange1"
+						step="0.1"
+						min="0"
+						max="5"
+						value="0"
+					/>
+				</div>
+				<div>
+					<h4 class="my-2">Rotate</h4>
+					<div
+						class="d-flex justify-content-start align-items-center"
+					>
+						<button
+							class="btn btn-secondary d-flex align-items-center"
+							id="horizontalRotate"
+						>
+							<span class="material-symbols-outlined"
+								>rotate_right</span
+							>
+						</button>
+						<button
+							class="btn btn-secondary d-flex align-items-center ms-3"
+							id="verticalRotate"
+						>
+							<span class="material-symbols-outlined"
+								>rotate_left</span
+							>
+						</button>
+					</div>
+				</div>
+
+				<div>
+					<h4 class="my-2">Reflect</h4>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value=""
+							id="verticalCheckbox"
+						/>
+						<label
+							class="form-check-label d-flex align-items-center"
+							for="vericalCheckbox"
+						>
+							<span class="material-symbols-outlined"
+								>swap_vert</span
+							>
+							<span class="ms-2">Vertical</span>
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value=""
+							id="horizontalCheckbox"
+						/>
+						<label
+							class="form-check-label d-flex align-items-center"
+							for="horizontalCheckbox"
+						>
+							<span class="material-symbols-outlined"
+								>swap_horiz</span
+							>
+							<span class="ms-2">Horizontal</span>
+						</label>
+					</div>
+				</div>
+				<div>
+					<h4 class="my-2">Filter</h4>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value=""
+							id="grayscale-toggle"
+						/>
+						<label
+							class="form-check-label d-flex align-items-center"
+							for="horizontalCheckbox"
+						>
+							<span class="material-symbols-outlined"
+								>contrast</span
+							>
+							<span class="ms-2">Grayscale</span>
+						</label>
+					</div>
+				</div> -->
